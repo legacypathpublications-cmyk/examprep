@@ -361,7 +361,7 @@ function modelHTML(q) {
 
 /* ---------------- views ---------------- */
 const SETS = { past: { name: 'Past paper questions', short: 'Past paper', blurb: 'Real Cambridge exam questions from past papers, with the paper reference on every part and the mark scheme points.' },
-               style: { name: 'Exam style questions', short: 'Exam style', blurb: 'New questions written in the Cambridge exam style, covering topics the past paper set does not reach, such as logic gates.' } };
+               style: { name: 'Exam style questions', short: 'Exam style', blurb: 'New questions written in the Cambridge exam style to fill gaps in the past paper set above, such as logic gates and truth tables. Add real logic gate past paper questions to the set when you have them.' } };
 const qLabel = q => q.set === 'past' ? 'Q' + q.n : 'ES' + (q.n - 100);
 const inSet = s => Q.filter(q => q.set === s);
 const subName = k => D.subs[k] || k;
