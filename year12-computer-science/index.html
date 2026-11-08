@@ -337,14 +337,17 @@ function msText(p) {
   return t;
 }
 function selfHTML(q, id) {
-  let h = '<h3>Read the mark scheme, then tick each mark you earned</h3>';
+  let h = '<h3>1. Read the mark scheme</h3>' + msHTML(q);
+  h += '<h3 style="margin-top:18px">2. Tick the points you earned, or type your mark</h3>';
   q.parts.forEach((p, pi) => {
-    h += `<h3 class="pr" style="margin-top:16px"><span>${esc(p.id)} <span class="muted ref">${esc(p.ref)}</span></span><span class="mk">(${p.marks})</span></h3>${p.msImg ? `<img class="fig" src="${D.imgs[p.msImg]}" alt="Mark scheme circuit">` : ''}<pre class="ms">${esc(msText(p))}</pre><ul class="pts">${selfItems(p).map((t, i) => `<li><label><input type="checkbox" class="selfpt" data-p="${pi}" id="${id}-${pi}-${i}"><span>${esc(t)}</span></label></li>`).join('')}</ul>`; });
-  return h + `<div class="row" style="margin-top:12px"><button class="btn" data-act="selfsave">Save my self-mark</button><span id="${id}-out" class="muted"></span></div>`;
+    h += `<h3 class="pr" style="margin-top:14px"><span>${esc(p.id)} <span class="muted ref">${esc(p.ref)}</span></span><span class="mk">(${p.marks})</span></h3><ul class="pts">${selfItems(p).map((t, i) => `<li><label><input type="checkbox" class="selfpt" data-p="${pi}" id="${id}-${pi}-${i}"><span>${esc(t)}</span></label></li>`).join('')}</ul>
+    <div class="row"><label for="${id}-mk${pi}"><b>Your mark for ${esc(p.id)}</b></label><input type="number" class="selfmk" data-p="${pi}" id="${id}-mk${pi}" min="0" max="${p.marks}" style="width:90px;font:600 1rem var(--mono);padding:6px" placeholder="0 to ${p.marks}"><span class="muted">out of ${p.marks}</span></div>`; });
+  return h + `<div class="row" style="margin-top:14px"><button class="btn" data-act="selfsave">Save my self-mark</button><span id="${id}-out" class="muted"></span></div>`;
 }
 function wireSelf(root, q, id, onSave) {
+  root.querySelectorAll('.selfpt').forEach(cb => cb.addEventListener('change', () => { const pi = cb.dataset.p; root.querySelector(`.selfmk[data-p="${pi}"]`).value = Math.min(q.parts[pi].marks, root.querySelectorAll(`.selfpt[data-p="${pi}"]:checked`).length); }));
   root.querySelector('[data-act="selfsave"]').addEventListener('click', () => {
-    let m = 0; q.parts.forEach((p, pi) => { m += Math.min(p.marks, root.querySelectorAll(`.selfpt[data-p="${pi}"]:checked`).length); });
+    let m = 0; q.parts.forEach((p, pi) => { const v = parseInt(root.querySelector(`.selfmk[data-p="${pi}"]`).value || '0', 10); m += Math.max(0, Math.min(p.marks, isNaN(v) ? 0 : v)); });
     onSave(m); root.querySelector(`#${id}-out`).textContent = `Saved: ${m}/${qMarks(q)}.`;
   });
 }
