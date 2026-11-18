@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Activity and Influences on Business | Year 10 Revision</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;600;700&display=swap">
+<style>
+:root{ --navy:#12355B; --teal:#1F7A8C; --gold:#FFC845; --green:#1E7B3A; --greenT:#E3F2E7; --coral:#B0402C; --coralT:#F8E0DB;
+  --bg:#F2F5F8; --card:#FFFFFF; --fg:#17273B; --muted:#5B6B7E; --line:#C9D5E0;
+  --display:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif }
+*{ box-sizing:border-box }
+body{ margin:0; background:var(--bg); color:var(--fg); font-family:var(--body) }
+.wrap{ max-width:980px; margin:0 auto; padding:0 16px 70px }
+header.site{ background:var(--navy); color:#fff; padding:34px 0 26px; margin-bottom:26px }
+header.site .wrap{ padding-bottom:0 }
+.kicker{ font-family:var(--display); font-size:13px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin:0 0 8px }
+h1.site{ font-family:var(--display); font-size:clamp(24px,4.5vw,40px); margin:0 0 8px; line-height:1.1 }
+.sub{ color:#C9D5E0; margin:0; font-size:15px }
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px }
+.chcard{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; cursor:pointer; display:flex; gap:14px; align-items:flex-start; transition:transform .12s, box-shadow .12s }
+.chcard:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(10,25,45,.12) }
+.chnum{ flex:0 0 46px; height:46px; border-radius:9px; background:var(--teal); color:#fff; font-family:var(--display); font-weight:700; font-size:22px; display:flex; align-items:center; justify-content:center }
+.chcard h3{ margin:0 0 6px; font-family:var(--display); font-size:16px; line-height:1.25 }
+.chcard .score{ font-size:12.5px; color:var(--muted) }
+.chcard .score b{ color:var(--green) }
+.crumbs{ margin:0 0 14px; font-size:14px }
+.crumbs a{ color:var(--teal); font-weight:600; text-decoration:none; cursor:pointer }
+.panelhead{ background:var(--navy); color:#fff; border-radius:10px; padding:18px 20px; margin-bottom:16px }
+.panelhead .kicker{ margin-bottom:4px }
+.panelhead h2{ font-family:var(--display); margin:0; font-size:clamp(20px,3.6vw,30px) }
+.tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px }
+.tabs button{ font-family:var(--display); font-weight:600; font-size:14px; padding:10px 16px; border:1.5px solid var(--line); border-radius:999px; background:var(--card); color:var(--fg); cursor:pointer }
+.tabs button.on{ background:var(--teal); border-color:var(--teal); color:#fff }
+.card{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px; margin-bottom:14px }
+.card h3{ font-family:var(--display); margin:0 0 10px; font-size:17px; color:var(--navy) }
+ul.points{ margin:0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:9px }
+ul.points li{ padding-left:22px; position:relative; line-height:1.5; font-size:15.5px }
+ul.points li::before{ content:"\25AA"; color:var(--teal); position:absolute; left:4px }
+.flashgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px }
+.flash{ perspective:800px; cursor:pointer; min-height:120px }
+.flash .inner{ position:relative; width:100%; height:100%; min-height:120px; transition:transform .45s; transform-style:preserve-3d }
+.flash.flip .inner{ transform:rotateY(180deg) }
+.face{ position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; display:flex; align-items:center; justify-content:center; text-align:center; padding:14px }
+.face.front{ background:var(--navy); color:#fff; font-family:var(--display); font-weight:600; font-size:16px }
+.face.back{ background:var(--card); border:2px solid var(--teal); transform:rotateY(180deg); font-size:13.5px; line-height:1.45 }
+.q{ border:1.5px solid var(--line); border-radius:10px; padding:16px; margin-bottom:12px; background:var(--card) }
+.q .stem{ font-weight:700; margin:0 0 10px; font-size:15.5px }
+.q .stem .mk{ color:var(--teal); font-weight:700 }
+.opts{ display:flex; flex-direction:column; gap:8px }
+.opts button{ text-align:left; font:inherit; font-size:15px; padding:10px 14px; border:1.5px solid var(--line); border-radius:8px; background:var(--bg); cursor:pointer }
+.opts button:hover{ border-color:var(--teal) }
+.opts button.right{ background:var(--greenT); border-color:var(--green); color:var(--green); font-weight:700 }
+.opts button.wrong{ background:var(--coralT); border-color:var(--coral); color:var(--coral) }
+.gapline{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; font-size:15px }
+.gapline input{ font:inherit; font-size:15px; padding:8px 10px; border:1.5px solid var(--line); border-radius:7px; width:170px; background:#fff; color:var(--fg) }
+.gapline input.right{ border-color:var(--green); background:var(--greenT); color:var(--green); font-weight:700 }
+.gapline input.wrong{ border-color:var(--coral); background:var(--coralT) }
+.checkbtn{ font-family:var(--display); font-weight:600; font-size:14px; padding:9px 16px; border:none; border-radius:8px; background:var(--teal); color:#fff; cursor:pointer; margin-top:10px }
+.checkbtn:hover{ filter:brightness(1.08) }
+.fb{ margin-top:8px; font-size:14px; font-weight:600 }
+.fb.ok{ color:var(--green) } .fb.no{ color:var(--coral) }
+.exam{ border:2px solid var(--gold); background:#FFFBEF; border-radius:10px; padding:18px; }
+.exam .tag{ font-family:var(--display); font-weight:700; font-size:13px; letter-spacing:1.5px; color:#8a6400; text-transform:uppercase; margin:0 0 8px }
+.exam .ref{ font-size:13px; color:var(--muted); font-style:italic; margin:6px 0 12px }
+.exam textarea{ width:100%; min-height:130px; font:inherit; font-size:15px; padding:12px; border:1.5px solid var(--line); border-radius:8px; resize:vertical; background:#fff; color:var(--fg) }
+.model{ margin-top:12px; border-left:4px solid var(--green); background:var(--greenT); border-radius:0 8px 8px 0; padding:12px 14px; display:none }
+.model.show{ display:block }
+.model p{ margin:0 0 6px; font-size:14.5px; color:var(--green); font-weight:600 }
+.scorebar{ height:10px; background:var(--line); border-radius:5px; overflow:hidden; margin-top:8px }
+.scorebar i{ display:block; height:100%; background:var(--green) }
+footer{ text-align:center; color:var(--muted); font-size:13px; padding:30px 16px }
+.hide{ display:none !important }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <p class="kicker">Year 10 Business &nbsp;|&nbsp; End of Unit Revision</p>
+    <h1 class="site">BUSINESS ACTIVITY AND INFLUENCES ON BUSINESS</h1>
+    <p class="sub">Chapters 1 to 15. Pick a chapter: learn the knowledge, flip the key terms, take the quiz, then finish with a real exam question.</p>
+  </div>
+</header>
+<div class="wrap">
+  <div id="home">
+    <div class="grid" id="grid"></div>
+  </div>
+  <div id="chap" class="hide">
+    <p class="crumbs"><a id="back">&#9664; All chapters</a></p>
+    <div class="panelhead">
+      <p class="kicker" id="cnum"></p>
+      <h2 id="ctitle"></h2>
+    </div>
+    <div class="tabs">
+      <button data-t="learn" class="on">Learn</button>
+      <button data-t="terms">Key terms</button>
+      <button data-t="quiz">Quick quiz</button>
+      <button data-t="exam">Exam question</button>
+    </div>
+    <div id="view"></div>
+  </div>
+</div>
+<footer>Revise little and often. Quiz scores save on this device only.</footer>
+<script src="data.js"></script>
+<script>
+const grid = document.getElementById('grid'), home = document.getElementById('home'), chap = document.getElementById('chap'), view = document.getElementById('view');
+let cur = null, tab = 'learn';
+function best(i){ try{ return JSON.parse(localStorage.getItem('baib-'+i)) }catch(e){ return null } }
+function saveBest(i, s, n){ try{ const b = best(i); if(!b || s > b.s) localStorage.setItem('baib-'+i, JSON.stringify({s, n})) }catch(e){} }
+function drawHome(){
+  grid.innerHTML = '';
+  CH.forEach((c, i) => {
+    const d = document.createElement('div'); d.className = 'chcard';
+    const b = best(i);
+    d.innerHTML = `<div class="chnum">${c.n}</div><div><h3>${c.t}</h3><div class="score">${b ? 'Best quiz score: <b>' + b.s + ' / ' + b.n + '</b>' : 'Quiz not tried yet'}</div></div>`;
+    d.addEventListener('click', () => openCh(i));
+    grid.appendChild(d);
+  });
+}
+function openCh(i){ cur = i; tab = 'learn'; home.classList.add('hide'); chap.classList.remove('hide');
+  document.getElementById('cnum').textContent = 'Chapter ' + CH[i].n;
+  document.getElementById('ctitle').textContent = CH[i].t.toUpperCase();
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === 'learn'));
+  drawTab(); window.scrollTo(0, 0);
+}
+document.getElementById('back').addEventListener('click', () => { chap.classList.add('hide'); home.classList.remove('hide'); drawHome(); });
+document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => { tab = b.dataset.t;
+  document.querySelectorAll('.tabs button').forEach(x => x.classList.toggle('on', x === b)); drawTab(); }));
+function drawTab(){
+  const c = CH[cur]; view.innerHTML = '';
+  if (tab === 'learn'){
+    const card = document.createElement('div'); card.className = 'card';
+    card.innerHTML = '<h3>What you must know</h3><ul class="points">' + c.p.map(x => '<li>' + x.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') + '</li>').join('') + '</ul>';
+    view.appendChild(card);
+  }
+  if (tab === 'terms'){
+    const card = document.createElement('div'); card.className = 'card';
+    card.innerHTML = '<h3>Tap a card to flip it</h3><div class="flashgrid">' + c.k.map(([t, d]) =>
+      `<div class="flash"><div class="inner"><div class="face front">${t}</div><div class="face back">${d}</div></div></div>`).join('') + '</div>';
+    view.appendChild(card);
+    card.querySelectorAll('.flash').forEach(f => f.addEventListener('click', () => f.classList.toggle('flip')));
+  }
+  if (tab === 'quiz'){
+    let score = 0, done = 0; const total = c.q.length;
+    const wrapC = document.createElement('div');
+    const bar = document.createElement('div'); bar.className = 'card';
+    bar.innerHTML = '<h3>Quick quiz</h3><div id="qscore">Score: 0 / ' + total + '</div><div class="scorebar"><i id="qbar" style="width:0"></i></div>';
+    wrapC.appendChild(bar);
+    const upd = () => { bar.querySelector('#qscore').textContent = 'Score: ' + score + ' / ' + total;
+      bar.querySelector('#qbar').style.width = (score / total * 100) + '%';
+      if (done === total) saveBest(cur, score, total); };
+    c.q.forEach((q) => {
+      const d = document.createElement('div'); d.className = 'q';
+      if (q.o){
+        d.innerHTML = '<p class="stem">' + q.s + ' <span class="mk">/1</span></p><div class="opts"></div><div class="fb"></div>';
+        const opts = d.querySelector('.opts');
+        q.o.forEach((o, oi) => { const b = document.createElement('button'); b.textContent = String.fromCharCode(65 + oi) + '  ' + o;
+          b.addEventListener('click', () => { if (d.dataset.done) return; d.dataset.done = 1; done++;
+            if (oi === q.a){ b.classList.add('right'); score++; d.querySelector('.fb').textContent = 'Correct.'; d.querySelector('.fb').className = 'fb ok'; }
+            else { b.classList.add('wrong'); opts.children[q.a].classList.add('right');
+              d.querySelector('.fb').textContent = 'The answer is ' + String.fromCharCode(65 + q.a) + '.'; d.querySelector('.fb').className = 'fb no'; }
+            upd(); });
+          opts.appendChild(b); });
+      } else {
+        d.innerHTML = '<p class="stem">' + q.s + ' <span class="mk">/1</span></p><div class="gapline">' + q.g.replace('___', '<input type="text" autocomplete="off" spellcheck="false">') + '</div><button class="checkbtn">Check</button><div class="fb"></div>';
+        const inp = d.querySelector('input');
+        d.querySelector('.checkbtn').addEventListener('click', () => { if (d.dataset.done) return;
+          const v = inp.value.toLowerCase().trim();
+          const ok = q.ans.some(a => v.includes(a));
+          d.dataset.done = 1; done++;
+          inp.classList.add(ok ? 'right' : 'wrong');
+          if (ok){ score++; d.querySelector('.fb').textContent = 'Correct.'; d.querySelector('.fb').className = 'fb ok'; }
+          else { d.querySelector('.fb').textContent = 'Answer: ' + q.show + '.'; d.querySelector('.fb').className = 'fb no'; }
+          upd(); });
+        inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') d.querySelector('.checkbtn').click(); });
+      }
+      wrapC.appendChild(d);
+    });
+    view.appendChild(wrapC);
+  }
+  if (tab === 'exam'){
+    const e = c.e;
+    const d = document.createElement('div'); d.className = 'exam';
+    d.innerHTML = '<p class="tag">Exam question &nbsp;/' + e.m + '</p><p class="stem" style="font-weight:700">' + e.s + '</p>' +
+      '<p class="ref">' + e.r + '</p><textarea placeholder="Type your answer here, then reveal the model answer to mark it."></textarea>' +
+      '<button class="checkbtn">Reveal model answer</button><div class="model">' + e.a.map(x => '<p>' + x + '</p>').join('') + '</div>';
+    d.querySelector('.checkbtn').addEventListener('click', () => d.querySelector('.model').classList.add('show'));
+    view.appendChild(d);
+  }
+}
+drawHome();
+</script>
+</body>
+</html>
