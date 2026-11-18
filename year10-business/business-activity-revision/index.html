@@ -7,23 +7,32 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;600;700&display=swap">
 <style>
 :root{ --navy:#12355B; --teal:#1F7A8C; --gold:#FFC845; --green:#1E7B3A; --greenT:#E3F2E7; --coral:#B0402C; --coralT:#F8E0DB;
-  --bg:#F2F5F8; --card:#FFFFFF; --fg:#17273B; --muted:#5B6B7E; --line:#C9D5E0;
+  --bg:#F2F5F8; --card:#FFFFFF; --fg:#17273B; --muted:#5B6B7E; --line:#C9D5E0; --amber:#A05E12; --amberT:#FBEEDC;
   --display:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif }
 *{ box-sizing:border-box }
 body{ margin:0; background:var(--bg); color:var(--fg); font-family:var(--body) }
-.wrap{ max-width:980px; margin:0 auto; padding:0 16px 70px }
-header.site{ background:var(--navy); color:#fff; padding:34px 0 26px; margin-bottom:26px }
-header.site .wrap{ padding-bottom:0 }
+.wrap{ max-width:1020px; margin:0 auto; padding:0 16px 70px }
+header.site{ background:linear-gradient(120deg,#12355B,#1F7A8C); color:#fff; padding:38px 0 30px; margin-bottom:24px }
 .kicker{ font-family:var(--display); font-size:13px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin:0 0 8px }
-h1.site{ font-family:var(--display); font-size:clamp(24px,4.5vw,40px); margin:0 0 8px; line-height:1.1 }
-.sub{ color:#C9D5E0; margin:0; font-size:15px }
-.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px }
+h1.site{ font-family:var(--display); font-size:clamp(24px,4.5vw,40px); margin:0 0 10px; line-height:1.1 }
+.sub{ color:#D7E3EC; margin:0; font-size:15px; max-width:760px; line-height:1.55 }
+.howto{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:0 0 22px }
+.how{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start }
+.how .ic{ flex:0 0 34px; height:34px; border-radius:8px; background:var(--teal); color:#fff; font-family:var(--display); font-weight:700; display:flex; align-items:center; justify-content:center; font-size:16px }
+.how b{ font-family:var(--display); font-size:14px; display:block; margin-bottom:2px }
+.how p{ margin:0; font-size:12.5px; color:var(--muted); line-height:1.4 }
+.overall{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 18px; margin-bottom:20px }
+.overall b{ font-family:var(--display) }
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px }
 .chcard{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; cursor:pointer; display:flex; gap:14px; align-items:flex-start; transition:transform .12s, box-shadow .12s }
 .chcard:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(10,25,45,.12) }
 .chnum{ flex:0 0 46px; height:46px; border-radius:9px; background:var(--teal); color:#fff; font-family:var(--display); font-weight:700; font-size:22px; display:flex; align-items:center; justify-content:center }
-.chcard h3{ margin:0 0 6px; font-family:var(--display); font-size:16px; line-height:1.25 }
-.chcard .score{ font-size:12.5px; color:var(--muted) }
+.chcard h3{ margin:0 0 4px; font-family:var(--display); font-size:16px; line-height:1.25 }
+.chcard .desc{ font-size:12.5px; color:var(--muted); line-height:1.4; margin:0 0 7px }
+.chcard .score{ font-size:12px; color:var(--muted) }
 .chcard .score b{ color:var(--green) }
+.chbar{ height:7px; background:var(--line); border-radius:4px; overflow:hidden; margin-top:6px }
+.chbar i{ display:block; height:100%; background:var(--green) }
 .crumbs{ margin:0 0 14px; font-size:14px }
 .crumbs a{ color:var(--teal); font-weight:600; text-decoration:none; cursor:pointer }
 .panelhead{ background:var(--navy); color:#fff; border-radius:10px; padding:18px 20px; margin-bottom:16px }
@@ -34,9 +43,12 @@ h1.site{ font-family:var(--display); font-size:clamp(24px,4.5vw,40px); margin:0 
 .tabs button.on{ background:var(--teal); border-color:var(--teal); color:#fff }
 .card{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px; margin-bottom:14px }
 .card h3{ font-family:var(--display); margin:0 0 10px; font-size:17px; color:var(--navy) }
+.card h3 .secno{ color:var(--teal) }
 ul.points{ margin:0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:9px }
-ul.points li{ padding-left:22px; position:relative; line-height:1.5; font-size:15.5px }
+ul.points li{ padding-left:22px; position:relative; line-height:1.55; font-size:15.5px }
 ul.points li::before{ content:"\25AA"; color:var(--teal); position:absolute; left:4px }
+.egbox{ border-left:4px solid var(--green); background:var(--greenT); border-radius:0 8px 8px 0; padding:10px 14px; margin-top:12px; font-size:14px; line-height:1.5 }
+.egbox b.lbl{ color:var(--green); font-family:var(--display); font-size:12.5px; letter-spacing:1px }
 .flashgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px }
 .flash{ perspective:800px; cursor:pointer; min-height:120px }
 .flash .inner{ position:relative; width:100%; height:100%; min-height:120px; transition:transform .45s; transform-style:preserve-3d }
@@ -53,36 +65,47 @@ ul.points li::before{ content:"\25AA"; color:var(--teal); position:absolute; lef
 .opts button.right{ background:var(--greenT); border-color:var(--green); color:var(--green); font-weight:700 }
 .opts button.wrong{ background:var(--coralT); border-color:var(--coral); color:var(--coral) }
 .gapline{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; font-size:15px }
-.gapline input{ font:inherit; font-size:15px; padding:8px 10px; border:1.5px solid var(--line); border-radius:7px; width:170px; background:#fff; color:var(--fg) }
+.gapline input{ font:inherit; font-size:15px; padding:8px 10px; border:1.5px solid var(--line); border-radius:7px; width:180px; background:#fff; color:var(--fg) }
 .gapline input.right{ border-color:var(--green); background:var(--greenT); color:var(--green); font-weight:700 }
 .gapline input.wrong{ border-color:var(--coral); background:var(--coralT) }
 .checkbtn{ font-family:var(--display); font-weight:600; font-size:14px; padding:9px 16px; border:none; border-radius:8px; background:var(--teal); color:#fff; cursor:pointer; margin-top:10px }
 .checkbtn:hover{ filter:brightness(1.08) }
+.checkbtn.ghost{ background:var(--navy) }
 .fb{ margin-top:8px; font-size:14px; font-weight:600 }
 .fb.ok{ color:var(--green) } .fb.no{ color:var(--coral) }
-.exam{ border:2px solid var(--gold); background:#FFFBEF; border-radius:10px; padding:18px; }
-.exam .tag{ font-family:var(--display); font-weight:700; font-size:13px; letter-spacing:1.5px; color:#8a6400; text-transform:uppercase; margin:0 0 8px }
-.exam .ref{ font-size:13px; color:var(--muted); font-style:italic; margin:6px 0 12px }
-.exam textarea{ width:100%; min-height:130px; font:inherit; font-size:15px; padding:12px; border:1.5px solid var(--line); border-radius:8px; resize:vertical; background:#fff; color:var(--fg) }
-.model{ margin-top:12px; border-left:4px solid var(--green); background:var(--greenT); border-radius:0 8px 8px 0; padding:12px 14px; display:none }
-.model.show{ display:block }
-.model p{ margin:0 0 6px; font-size:14.5px; color:var(--green); font-weight:600 }
 .scorebar{ height:10px; background:var(--line); border-radius:5px; overflow:hidden; margin-top:8px }
 .scorebar i{ display:block; height:100%; background:var(--green) }
+.exam{ border:2px solid var(--gold); background:#FFFBEF; border-radius:10px; padding:18px }
+.exam .tag{ display:inline-block; font-family:var(--display); font-weight:700; font-size:13px; letter-spacing:1.5px; color:#8a6400; text-transform:uppercase; margin:0 8px 8px 0 }
+.exam .marks{ display:inline-block; background:var(--navy); color:var(--gold); font-family:var(--display); font-weight:700; font-size:14px; padding:4px 12px; border-radius:999px; margin-bottom:8px }
+.exam .ref{ font-size:13px; color:var(--muted); font-style:italic; margin:6px 0 12px }
+.exam textarea{ width:100%; min-height:150px; font:inherit; font-size:15px; padding:12px; border:1.5px solid var(--line); border-radius:8px; resize:vertical; background:#fff; color:var(--fg) }
+.model{ margin-top:12px; border-left:4px solid var(--green); background:var(--greenT); border-radius:0 8px 8px 0; padding:12px 14px; display:none }
+.model.show{ display:block }
+.model h4{ margin:0 0 8px; color:var(--green); font-family:var(--display); font-size:14px; letter-spacing:.5px }
+.model p{ margin:0 0 7px; font-size:14.5px; color:#174D28; line-height:1.5 }
+.model p.note{ font-style:italic; color:var(--muted); font-size:13px }
 footer{ text-align:center; color:var(--muted); font-size:13px; padding:30px 16px }
 .hide{ display:none !important }
 </style>
 </head>
 <body>
 <header class="site">
-  <div class="wrap">
-    <p class="kicker">Year 10 Business &nbsp;|&nbsp; End of Unit Revision</p>
+  <div class="wrap" style="padding-bottom:0">
+    <p class="kicker">Year 10 Business &nbsp;|&nbsp; End of Unit Revision &nbsp;|&nbsp; Pearson Edexcel International GCSE</p>
     <h1 class="site">BUSINESS ACTIVITY AND INFLUENCES ON BUSINESS</h1>
-    <p class="sub">Chapters 1 to 15. Pick a chapter: learn the knowledge, flip the key terms, take the quiz, then finish with a real exam question.</p>
+    <p class="sub">Everything from Chapters 1 to 15 of the Student Book: the knowledge, the key terms, an 8-question quiz for every chapter, and a real past-paper exam question with its official mark scheme.</p>
   </div>
 </header>
 <div class="wrap">
   <div id="home">
+    <div class="howto">
+      <div class="how"><div class="ic">1</div><div><b>Learn</b><p>Read the knowledge, section by section, with the book's real examples.</p></div></div>
+      <div class="how"><div class="ic">2</div><div><b>Key terms</b><p>Flip the flashcards until every definition is automatic.</p></div></div>
+      <div class="how"><div class="ic">3</div><div><b>Quiz</b><p>8 questions per chapter, marked instantly. Retry until you score 8/8.</p></div></div>
+      <div class="how"><div class="ic">4</div><div><b>Exam question</b><p>Answer a real past-paper question, then mark yourself with the mark scheme.</p></div></div>
+    </div>
+    <div class="overall"><b>Your progress:</b> <span id="ovtext">no quizzes tried yet</span><div class="scorebar"><i id="ovbar" style="width:0"></i></div></div>
     <div class="grid" id="grid"></div>
   </div>
   <div id="chap" class="hide">
@@ -94,7 +117,7 @@ footer{ text-align:center; color:var(--muted); font-size:13px; padding:30px 16px
     <div class="tabs">
       <button data-t="learn" class="on">Learn</button>
       <button data-t="terms">Key terms</button>
-      <button data-t="quiz">Quick quiz</button>
+      <button data-t="quiz">Quiz (8 questions)</button>
       <button data-t="exam">Exam question</button>
     </div>
     <div id="view"></div>
@@ -102,23 +125,35 @@ footer{ text-align:center; color:var(--muted); font-size:13px; padding:30px 16px
 </div>
 <footer>Revise little and often. Quiz scores save on this device only.</footer>
 <script src="data.js"></script>
+<script src="data2.js"></script>
 <script>
 const grid = document.getElementById('grid'), home = document.getElementById('home'), chap = document.getElementById('chap'), view = document.getElementById('view');
 let cur = null, tab = 'learn';
 function best(i){ try{ return JSON.parse(localStorage.getItem('baib-'+i)) }catch(e){ return null } }
 function saveBest(i, s, n){ try{ const b = best(i); if(!b || s > b.s) localStorage.setItem('baib-'+i, JSON.stringify({s, n})) }catch(e){} }
+function overall(){
+  let got = 0, tot = 0, tried = 0;
+  CH.forEach((c, i) => { const b = best(i); tot += c.q.length; if (b){ got += b.s; tried++; } });
+  const t = document.getElementById('ovtext'), bar = document.getElementById('ovbar');
+  if (!t) return;
+  t.textContent = tried ? `${got} / ${tot} quiz marks banked across ${tried} of 15 chapters` : 'no quizzes tried yet';
+  bar.style.width = (got / tot * 100) + '%';
+}
 function drawHome(){
   grid.innerHTML = '';
   CH.forEach((c, i) => {
     const d = document.createElement('div'); d.className = 'chcard';
-    const b = best(i);
-    d.innerHTML = `<div class="chnum">${c.n}</div><div><h3>${c.t}</h3><div class="score">${b ? 'Best quiz score: <b>' + b.s + ' / ' + b.n + '</b>' : 'Quiz not tried yet'}</div></div>`;
+    const b = best(i), n = c.q.length;
+    d.innerHTML = `<div class="chnum">${c.n}</div><div style="flex:1;min-width:0"><h3>${c.t}</h3><p class="desc">${c.d}</p>` +
+      `<div class="score">${b ? 'Best quiz: <b>' + b.s + ' / ' + n + '</b>' : 'Quiz not tried yet'}</div>` +
+      `<div class="chbar"><i style="width:${b ? b.s / n * 100 : 0}%"></i></div></div>`;
     d.addEventListener('click', () => openCh(i));
     grid.appendChild(d);
   });
+  overall();
 }
 function openCh(i){ cur = i; tab = 'learn'; home.classList.add('hide'); chap.classList.remove('hide');
-  document.getElementById('cnum').textContent = 'Chapter ' + CH[i].n;
+  document.getElementById('cnum').textContent = 'Chapter ' + CH[i].n + '  |  Student Book pages ' + CH[i].pp;
   document.getElementById('ctitle').textContent = CH[i].t.toUpperCase();
   document.querySelectorAll('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === 'learn'));
   drawTab(); window.scrollTo(0, 0);
@@ -126,12 +161,17 @@ function openCh(i){ cur = i; tab = 'learn'; home.classList.add('hide'); chap.cla
 document.getElementById('back').addEventListener('click', () => { chap.classList.add('hide'); home.classList.remove('hide'); drawHome(); });
 document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => { tab = b.dataset.t;
   document.querySelectorAll('.tabs button').forEach(x => x.classList.toggle('on', x === b)); drawTab(); }));
+const fmt = (x) => x.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 function drawTab(){
   const c = CH[cur]; view.innerHTML = '';
   if (tab === 'learn'){
-    const card = document.createElement('div'); card.className = 'card';
-    card.innerHTML = '<h3>What you must know</h3><ul class="points">' + c.p.map(x => '<li>' + x.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') + '</li>').join('') + '</ul>';
-    view.appendChild(card);
+    c.secs.forEach((s, si) => {
+      const card = document.createElement('div'); card.className = 'card';
+      card.innerHTML = `<h3><span class="secno">${c.n}.${si + 1}</span>  ${fmt(s.h)}</h3>` +
+        '<ul class="points">' + s.pts.map(x => '<li>' + fmt(x) + '</li>').join('') + '</ul>' +
+        (s.eg ? `<div class="egbox"><b class="lbl">REAL EXAMPLE&nbsp;&nbsp;</b>${fmt(s.eg)}</div>` : '');
+      view.appendChild(card);
+    });
   }
   if (tab === 'terms'){
     const card = document.createElement('div'); card.className = 'card';
@@ -140,53 +180,59 @@ function drawTab(){
     view.appendChild(card);
     card.querySelectorAll('.flash').forEach(f => f.addEventListener('click', () => f.classList.toggle('flip')));
   }
-  if (tab === 'quiz'){
-    let score = 0, done = 0; const total = c.q.length;
-    const wrapC = document.createElement('div');
-    const bar = document.createElement('div'); bar.className = 'card';
-    bar.innerHTML = '<h3>Quick quiz</h3><div id="qscore">Score: 0 / ' + total + '</div><div class="scorebar"><i id="qbar" style="width:0"></i></div>';
-    wrapC.appendChild(bar);
-    const upd = () => { bar.querySelector('#qscore').textContent = 'Score: ' + score + ' / ' + total;
-      bar.querySelector('#qbar').style.width = (score / total * 100) + '%';
-      if (done === total) saveBest(cur, score, total); };
-    c.q.forEach((q) => {
-      const d = document.createElement('div'); d.className = 'q';
-      if (q.o){
-        d.innerHTML = '<p class="stem">' + q.s + ' <span class="mk">/1</span></p><div class="opts"></div><div class="fb"></div>';
-        const opts = d.querySelector('.opts');
-        q.o.forEach((o, oi) => { const b = document.createElement('button'); b.textContent = String.fromCharCode(65 + oi) + '  ' + o;
-          b.addEventListener('click', () => { if (d.dataset.done) return; d.dataset.done = 1; done++;
-            if (oi === q.a){ b.classList.add('right'); score++; d.querySelector('.fb').textContent = 'Correct.'; d.querySelector('.fb').className = 'fb ok'; }
-            else { b.classList.add('wrong'); opts.children[q.a].classList.add('right');
-              d.querySelector('.fb').textContent = 'The answer is ' + String.fromCharCode(65 + q.a) + '.'; d.querySelector('.fb').className = 'fb no'; }
-            upd(); });
-          opts.appendChild(b); });
-      } else {
-        d.innerHTML = '<p class="stem">' + q.s + ' <span class="mk">/1</span></p><div class="gapline">' + q.g.replace('___', '<input type="text" autocomplete="off" spellcheck="false">') + '</div><button class="checkbtn">Check</button><div class="fb"></div>';
-        const inp = d.querySelector('input');
-        d.querySelector('.checkbtn').addEventListener('click', () => { if (d.dataset.done) return;
-          const v = inp.value.toLowerCase().trim();
-          const ok = q.ans.some(a => v.includes(a));
-          d.dataset.done = 1; done++;
-          inp.classList.add(ok ? 'right' : 'wrong');
-          if (ok){ score++; d.querySelector('.fb').textContent = 'Correct.'; d.querySelector('.fb').className = 'fb ok'; }
-          else { d.querySelector('.fb').textContent = 'Answer: ' + q.show + '.'; d.querySelector('.fb').className = 'fb no'; }
-          upd(); });
-        inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') d.querySelector('.checkbtn').click(); });
-      }
-      wrapC.appendChild(d);
-    });
-    view.appendChild(wrapC);
-  }
+  if (tab === 'quiz') drawQuiz(c);
   if (tab === 'exam'){
     const e = c.e;
     const d = document.createElement('div'); d.className = 'exam';
-    d.innerHTML = '<p class="tag">Exam question &nbsp;/' + e.m + '</p><p class="stem" style="font-weight:700">' + e.s + '</p>' +
-      '<p class="ref">' + e.r + '</p><textarea placeholder="Type your answer here, then reveal the model answer to mark it."></textarea>' +
-      '<button class="checkbtn">Reveal model answer</button><div class="model">' + e.a.map(x => '<p>' + x + '</p>').join('') + '</div>';
+    d.innerHTML = `<span class="tag">Exam question</span><span class="marks">${e.m} mark${e.m > 1 ? 's' : ''}</span>` +
+      `<p class="stem" style="font-weight:700;line-height:1.5">${fmt(e.s)}</p>` +
+      `<p class="ref">${e.r}</p><textarea placeholder="Type your answer here, then reveal the mark scheme to mark it."></textarea>` +
+      '<button class="checkbtn">Reveal the mark scheme</button><div class="model"><h4>MARK SCHEME</h4>' +
+      e.a.map(x => `<p>${fmt(x)}</p>`).join('') +
+      (e.note ? `<p class="note">${fmt(e.note)}</p>` : '') + '</div>';
     d.querySelector('.checkbtn').addEventListener('click', () => d.querySelector('.model').classList.add('show'));
     view.appendChild(d);
   }
+}
+function drawQuiz(c){
+  let score = 0, done = 0; const total = c.q.length;
+  const wrapC = document.createElement('div');
+  const bar = document.createElement('div'); bar.className = 'card';
+  bar.innerHTML = `<h3>Quiz: ${c.t}</h3><div id="qscore">Score: 0 / ${total}</div><div class="scorebar"><i id="qbar" style="width:0"></i></div>` +
+    '<button class="checkbtn ghost" id="retry" style="display:none">Try the quiz again</button>';
+  wrapC.appendChild(bar);
+  const upd = () => { bar.querySelector('#qscore').textContent = 'Score: ' + score + ' / ' + total;
+    bar.querySelector('#qbar').style.width = (score / total * 100) + '%';
+    if (done === total){ saveBest(cur, score, total); bar.querySelector('#retry').style.display = 'inline-block'; } };
+  bar.addEventListener('click', (ev) => { if (ev.target.id === 'retry') drawQuiz(c); });
+  c.q.forEach((q, qi) => {
+    const d = document.createElement('div'); d.className = 'q';
+    if (q.o){
+      d.innerHTML = `<p class="stem">Q${qi + 1}.  ${fmt(q.s)} <span class="mk">/1</span></p><div class="opts"></div><div class="fb"></div>`;
+      const opts = d.querySelector('.opts');
+      q.o.forEach((o, oi) => { const b = document.createElement('button'); b.textContent = String.fromCharCode(65 + oi) + '  ' + o;
+        b.addEventListener('click', () => { if (d.dataset.done) return; d.dataset.done = 1; done++;
+          if (oi === q.a){ b.classList.add('right'); score++; d.querySelector('.fb').textContent = 'Correct.'; d.querySelector('.fb').className = 'fb ok'; }
+          else { b.classList.add('wrong'); opts.children[q.a].classList.add('right');
+            d.querySelector('.fb').textContent = 'The answer is ' + String.fromCharCode(65 + q.a) + '. ' + (q.why || ''); d.querySelector('.fb').className = 'fb no'; }
+          upd(); });
+        opts.appendChild(b); });
+    } else {
+      d.innerHTML = `<p class="stem">Q${qi + 1}.  ${fmt(q.s)} <span class="mk">/1</span></p><div class="gapline">` + q.g.replace('___', '<input type="text" autocomplete="off" spellcheck="false">') + '</div><button class="checkbtn">Check</button><div class="fb"></div>';
+      const inp = d.querySelector('input');
+      d.querySelector('.checkbtn').addEventListener('click', () => { if (d.dataset.done) return;
+        const v = inp.value.toLowerCase().trim();
+        const ok = v && q.ans.some(a => v.includes(a));
+        d.dataset.done = 1; done++;
+        inp.classList.add(ok ? 'right' : 'wrong');
+        if (ok){ score++; d.querySelector('.fb').textContent = 'Correct.'; d.querySelector('.fb').className = 'fb ok'; }
+        else { d.querySelector('.fb').textContent = 'Answer: ' + q.show + '.'; d.querySelector('.fb').className = 'fb no'; }
+        upd(); });
+      inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') d.querySelector('.checkbtn').click(); });
+    }
+    wrapC.appendChild(d);
+  });
+  view.innerHTML = ''; view.appendChild(wrapC);
 }
 drawHome();
 </script>
