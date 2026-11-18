@@ -71,6 +71,7 @@ ul.points li::before{ content:"\25AA"; color:var(--teal); position:absolute; lef
 .checkbtn{ font-family:var(--display); font-weight:600; font-size:14px; padding:9px 16px; border:none; border-radius:8px; background:var(--teal); color:#fff; cursor:pointer; margin-top:10px }
 .checkbtn:hover{ filter:brightness(1.08) }
 .checkbtn.ghost{ background:var(--navy) }
+.checkbtn.clear{ background:var(--coral) }
 .fb{ margin-top:8px; font-size:14px; font-weight:600 }
 .fb.ok{ color:var(--green) } .fb.no{ color:var(--coral) }
 .scorebar{ height:10px; background:var(--line); border-radius:5px; overflow:hidden; margin-top:8px }
@@ -99,7 +100,7 @@ footer{ text-align:center; color:var(--muted); font-size:13px; padding:30px 16px
 </header>
 <div class="wrap">
   <div id="home">
-    <div class="overall"><b>Your progress:</b> <span id="ovtext">no quizzes tried yet</span><div class="scorebar"><i id="ovbar" style="width:0"></i></div></div>
+    <div class="overall"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><b>Your progress:</b> <span id="ovtext">no quizzes tried yet</span></div><button class="checkbtn clear" id="clearAll" style="margin-top:0">Clear all progress</button></div><div class="scorebar"><i id="ovbar" style="width:0"></i></div></div>
     <div class="grid" id="grid"></div>
   </div>
   <div id="chap" class="hide">
@@ -193,12 +194,15 @@ function drawQuiz(c){
   const wrapC = document.createElement('div');
   const bar = document.createElement('div'); bar.className = 'card';
   bar.innerHTML = `<h3>Quiz: ${c.t}</h3><div id="qscore">Score: 0 / ${total}</div><div class="scorebar"><i id="qbar" style="width:0"></i></div>` +
-    '<button class="checkbtn ghost" id="retry" style="display:none">Try the quiz again</button>';
+    '<button class="checkbtn ghost" id="retry" style="display:none;margin-right:8px">Try the quiz again</button><button class="checkbtn clear" id="clearQuiz">Clear this quiz</button>';
   wrapC.appendChild(bar);
   const upd = () => { bar.querySelector('#qscore').textContent = 'Score: ' + score + ' / ' + total;
     bar.querySelector('#qbar').style.width = (score / total * 100) + '%';
     if (done === total){ saveBest(cur, score, total); bar.querySelector('#retry').style.display = 'inline-block'; } };
-  bar.addEventListener('click', (ev) => { if (ev.target.id === 'retry') drawQuiz(c); });
+  bar.addEventListener('click', (ev) => {
+    if (ev.target.id === 'retry') drawQuiz(c);
+    if (ev.target.id === 'clearQuiz'){ try{ localStorage.removeItem('baib-' + cur) }catch(e){} drawQuiz(c); }
+  });
   c.q.forEach((q, qi) => {
     const d = document.createElement('div'); d.className = 'q';
     if (q.o){
@@ -228,6 +232,16 @@ function drawQuiz(c){
   });
   view.innerHTML = ''; view.appendChild(wrapC);
 }
+const clearAll = document.getElementById('clearAll');
+clearAll.addEventListener('click', () => {
+  if (clearAll.dataset.armed){
+    CH.forEach((c, i) => { try{ localStorage.removeItem('baib-' + i) }catch(e){} });
+    delete clearAll.dataset.armed; clearAll.textContent = 'Clear all progress'; drawHome();
+  } else {
+    clearAll.dataset.armed = 1; clearAll.textContent = 'Click again to clear everything';
+    setTimeout(() => { delete clearAll.dataset.armed; clearAll.textContent = 'Clear all progress'; }, 4000);
+  }
+});
 drawHome();
 </script>
 </body>
